@@ -1,0 +1,22 @@
+body {
+    font-size: 13px;
+}
+button {
+    margin: 0;
+    padding: 0;
+    border: 1px solid #333;
+}
+
+.entry {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80%;
+    max-width: 400px;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.list {
+    border-top: 1px solid #eee;
+}
