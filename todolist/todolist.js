@@ -1,8 +1,17 @@
+Vue.component('button-entry',{
+  template: '<div class="button-entry"><button type="button" @click="show">新規追加</button></div>',
+  methods: {
+    show() {
+      this.$emit('show');
+    }
+  }
+})
+
 Vue.component('todo-entry',{
-	template: '<form @submit.prevent="" class="entry">' +
-	'<input type="text" placeholder="todo入力" v-model="text"><button type="submit" @click="enterButton">追加</button>' +
-  '</form>',
-  props: ['items'],
+	template: '<div class="bg-entry" v-if="show"><form @submit.prevent="" class="entry"><button type="button" @click="closeEntry" class="close">閉じる</button>' +
+	'<input type="text" placeholder="todo入力" v-model="text"><br><button type="submit" @click="enterButton" class="add">追加</button>' +
+  '</form></div>',
+  props: ['show'],
   data() {
     return {
       text: ''
@@ -12,6 +21,10 @@ Vue.component('todo-entry',{
     enterButton() {
       this.$emit('add', this.text);
       this.text = '';
+      this.$emit('show');
+    },
+    closeEntry() {
+      this.$emit('show');
     }
   }
 })
@@ -23,7 +36,6 @@ Vue.component('todo',{
   props: ['items'],
   methods: {
     deleteButton(id) {
-      console.log(id);
       this.$emit('delete', id);
     }
   }
@@ -35,7 +47,8 @@ new Vue({
     list: [
       { id: 0 , text: '最初の1件です。' }
     ],
-    id: Number
+    id: Number,
+    show: false,
   },
   created() {
     this.id = this.list.length;
@@ -50,6 +63,14 @@ new Vue({
       id--;
       this.list.splice(id, 1);
       console.log(this.list);
+    },
+    showEntry() {
+      console.log("a");
+      if(this.show) {
+        this.show = false;
+      } else {
+        this.show = true;
+      }
     }
   }
 })
