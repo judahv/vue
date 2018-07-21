@@ -79,7 +79,7 @@ new Vue({
     deleteList(id) {
       const delId = id--;
       this.list.some((v, i) => {
-        if (v.id==delId) this.list.splice(i,1);
+        if (v.id == delId) this.list.splice(i , 1);
       });
       this.setList();
     },
@@ -101,3 +101,19 @@ new Vue({
  * 参考文献：localStorage　https://qiita.com/shingorow/items/97c265d4cab33cb13b6c
  * 配列から特定のものを削除　https://qiita.com/_shimizu/items/b8eac14f399e20599818
  */
+// Vuexが便利なわけがわかってきた。まだVuexしてないけど。簡単なものなら、コンポーネント分けずに全部ルートだけで終わらすことが可能だが、もし大規模でメンテナンス的にコンポーネント化して複雑なものになるのであれば、バケツリレーはつらい。
+// 大本のルートからdataを渡すのは面倒。孫、ひ孫になると受け渡しが大変。１つずつにpropsして、dataをreturnしなくてはいけない。
+// このコンポーネントでクリックしたら、親でも子でもない違うコンポーネントを操作するのは大変。
+
+// 単一コンポーネント化（vueファイル）にする理由
+// templeteは+で連結できるが、だんだん作業しずらくなる。文字列連結じゃなくなるのは見通し良いし、連結で改行位置ずれるだけでエラーでたので楽。`の改行位置おかしいとだめみたい。
+
+// localStorageにしたときに、削除するid（splice）がずれてしまった。
+
+/* TodoList
+ * todoの新規追加（ポップアップ）
+ * todoの削除
+ * ブラウザを閉じてもまた開けば保存されている（localStorage）
+ * todoの一覧
+ */
+
