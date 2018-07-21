@@ -13,6 +13,7 @@ button {
 #header {
     position: relative;
     padding: 10px;
+    border-bottom: 1px solid #eee;
     text-align: center;
 }
 #header h1 {
@@ -25,8 +26,9 @@ button {
     right: 10px;
 }
 
-.button-entry {
-
+.nomatch {
+    padding: 10px;
+    text-align: center;
 }
 
 .bg-entry {
@@ -35,7 +37,7 @@ button {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0,0,0,0.6);
+    background: rgba(0,0,0,0.4);
 }
 .entry {
     position: absolute;
@@ -54,6 +56,9 @@ button {
     width: 100%;
     margin-bottom: 10px;
 }
+.entry input.error {
+    border: 3px solid #f00;
+}
 .entry .close {
     position: absolute;
     top: 5px;
@@ -63,7 +68,19 @@ button {
     width: 100%;
     max-width: 200px;
 }
+.entry .text-error {
+    margin-bottom: 10px;
+    color: #f00;
+    text-align: left;
+}
 
 .list {
-    border-top: 1px solid #eee;
+    
+}
+.list li {
+    padding: 5px;
+    border-bottom: 1px solid #eee;
+}
+.list button {
+    margin-left: 7px;
 }

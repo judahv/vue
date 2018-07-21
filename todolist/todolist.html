@@ -16,7 +16,7 @@
 <todo :items="list" @delete="deleteList"></todo>
 </template>
 <template v-else>
-<p>登録されているTodoはありません。</p>
+<p class="nomatch">登録されているTodoはありません。</p>
 </template>
 
 <todo-entry @add="addList" @show="showEntry" :show="show"></todo-entry>

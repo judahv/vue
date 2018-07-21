@@ -8,24 +8,34 @@ Vue.component('button-entry',{
 })
 
 Vue.component('todo-entry',{
-	template: '<div class="bg-entry" v-if="show"><form @submit.prevent="" class="entry"><button type="button" @click="closeEntry" class="close">閉じる</button>' +
-	'<input type="text" placeholder="todo入力" v-model="text"><br><button type="submit" @click="enterButton" class="add">追加</button>' +
+  template: '<div class="bg-entry" v-if="show">' +
+  '<form @submit.prevent="" class="entry">' +
+  '<button type="button" @click="closeEntry" class="close">閉じる</button>' +
+  '<p v-if="isError" class="text-error">Todoを入力してください。</p>' +
+  '<input type="text" placeholder="todo入力" v-model="text" :class="{ error : isError }"><br>'+
+  '<button type="submit" @click="enterButton" class="add">追加</button>' +
   '</form></div>',
   props: ['show'],
   data() {
     return {
-      text: ''
+      text: '',
+      isError: false,
     }
   },
   methods: {
-    enterButton() {
-      this.$emit('add', this.text);
-      this.text = '';
-      this.$emit('show');
+    enterButton(e) {
+      if (this.text === '') {
+        this.isError = true;
+        e.preventDefault();
+      } else {
+        this.$emit('add', this.text);
+        this.text = '';
+        this.$emit('show');
+      }
     },
     closeEntry() {
       this.$emit('show');
-    }
+    },
   }
 })
 
@@ -65,7 +75,6 @@ new Vue({
       console.log(this.list);
     },
     showEntry() {
-      console.log("a");
       if(this.show) {
         this.show = false;
       } else {
@@ -74,3 +83,6 @@ new Vue({
     }
   }
 })
+
+/*
+ * 【疑問】:class="{is-error:isError}" とクラス名を「is-error」にしたいが、ならない。「error」ならＯＫみたい */
