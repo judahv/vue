@@ -8,7 +8,8 @@ Vue.component('button-entry',{
 })
 
 Vue.component('todo-entry',{
-  template: '<div class="bg-entry" v-if="show">' +
+  template: '<div class="todo-entry" v-if="show">' +
+  '<div class="bg-entry" @click="closeEntry"></div>' +
   '<form @submit.prevent="" class="entry">' +
   '<button type="button" @click="closeEntry" class="close">閉じる</button>' +
   '<p v-if="isError" class="text-error">Todoを入力してください。</p>' +
@@ -29,12 +30,13 @@ Vue.component('todo-entry',{
         e.preventDefault();
       } else {
         this.$emit('add', this.text);
-        this.text = '';
-        this.isError = false;
-        this.$emit('show');
+        this.resetEntry();
       }
     },
     closeEntry() {
+      this.resetEntry();
+    },
+    resetEntry() {
       this.text = '';
       this.isError = false;
       this.$emit('show');
