@@ -10,15 +10,12 @@
 
 <div id="app">
 <header id="header"><h1>TodoList</h1><button-entry @show="showEntry"></button-entry></header>
-
-
 <template v-if="list.length > 0">
 <todo :items="list" @delete="deleteList"></todo>
 </template>
 <template v-else>
 <p class="nomatch">登録されているTodoはありません。</p>
 </template>
-
 <todo-entry @add="addList" @show="showEntry" :show="show"></todo-entry>
 </div>
 

@@ -30,10 +30,13 @@ Vue.component('todo-entry',{
       } else {
         this.$emit('add', this.text);
         this.text = '';
+        this.isError = false;
         this.$emit('show');
       }
     },
     closeEntry() {
+      this.text = '';
+      this.isError = false;
       this.$emit('show');
     }
   }
@@ -57,25 +60,27 @@ Vue.component('todo',{
 new Vue({
   el: '#app',
   data: {
-    list: [
-      { id: 0 , text: '最初の1件です。' }
-    ],
+    list: [],
     id: Number,
     show: false,
   },
-  created() {
+  mounted() {
+    this.list = JSON.parse(localStorage.getItem('list')) || [];
+
     this.id = this.list.length;
   },
   methods: {
     addList(text) {
       this.id++;
       this.list.push({ id:this.id, text: text });
-      console.log(this.list);
+      this.setList();
     },
     deleteList(id) {
-      id--;
-      this.list.splice(id, 1);
-      console.log(this.list);
+      const delId = id--;
+      this.list.some((v, i) => {
+        if (v.id==delId) this.list.splice(i,1);
+      });
+      this.setList();
     },
     showEntry() {
       if(this.show) {
@@ -83,9 +88,14 @@ new Vue({
       } else {
         this.show = true;
       }
+    },
+    setList() {
+      localStorage.setItem('list', JSON.stringify(this.list));
     }
   }
 })
 
 /*
- * 【疑問】:class="{is-error:isError}" とクラス名を「is-error」にしたいが、ならない。「error」ならＯＫみたい */
+ * 【疑問】:class="{is-error:isError}" とクラス名を「is-error」にしたいが、ならない。「error」ならＯＫみたい
+ * 参考文献：localStorage　https://qiita.com/shingorow/items/97c265d4cab33cb13b6c
+ */
