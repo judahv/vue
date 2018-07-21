@@ -70,12 +70,18 @@ new Vue({
     // localSotrage全データ削除用
     // localStorage.clear('list');
     this.list = JSON.parse(localStorage.getItem('list')) || [];
-    this.id = this.list.length;
+    if(this.list.length === 0) {
+      this.id = this.list.length + 1;
+    } else {
+      let lastList = this.list.length;
+      lastList--;
+      this.id = this.list[lastList].id + 1;
+    }
   },
   methods: {
     addList(text) {
-      this.id++;
       this.list.push({ id:this.id, text: text });
+      this.id++;
       this.setList();
     },
     deleteList(id) {
@@ -110,6 +116,9 @@ new Vue({
 // templeteは+で連結できるが、だんだん作業しずらくなる。文字列連結じゃなくなるのは見通し良いし、連結で改行位置ずれるだけでエラーでたので楽。`の改行位置おかしいとだめみたい。
 
 // localStorageにしたときに、削除するid（splice）がずれてしまった。
+// 配列の削除の仕方　spliceがうまく扱えなかっただけだった。
+// localStorage https://www.pazru.net/html5/WebStorage/030.html
+// lengthよりidが多かった場合やlengthのほうが小さくなってしまう場合がある。lengthより配列の最後のid++のほうが安全かも。
 
 /* TodoList
  * todoの新規追加（ポップアップ）
