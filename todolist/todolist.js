@@ -13,7 +13,7 @@ Vue.component('todo-entry',{
   '<form @submit.prevent="" class="entry">' +
   '<button type="button" @click="closeEntry" class="close">閉じる</button>' +
   '<p v-if="isError" class="text-error">Todoを入力してください。</p>' +
-  '<input type="text" placeholder="todo入力" v-model="text" :class="{ error : isError }"><br>' +
+  '<textarea type="text" placeholder="todo入力" v-model="text" :class="{ error : isError }"></textarea><br>' +
   '<button type="submit" @click="enterButton" class="add">追加</button>' +
   '</form></div>',
   props: ['show'],
@@ -67,6 +67,8 @@ new Vue({
     show: false,
   },
   mounted() {
+    // localSotrage全データ削除用
+    // localStorage.clear('list');
     this.list = JSON.parse(localStorage.getItem('list')) || [];
     this.id = this.list.length;
   },
@@ -77,9 +79,8 @@ new Vue({
       this.setList();
     },
     deleteList(id) {
-      const delId = id--;
       this.list.some((v, i) => {
-        if (v.id == delId) this.list.splice(i , 1);
+        if (v.id == id) this.list.splice(i , 1);
       });
       this.setList();
     },
