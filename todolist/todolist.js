@@ -43,7 +43,7 @@ Vue.component('todo-entry',{
 })
 
 Vue.component('todo',{
-	template: '<ul class="list">' +
+  template: '<ul class="list">' +
   '<li v-for="item in items" :key="item.id">'+
   '<div class="list-text">{{item.text}}</div>'+
   '<div class="list-delete"><button type="button" @click="deleteButton(item.id)">削除</button></div>'+
@@ -66,7 +66,6 @@ new Vue({
   },
   mounted() {
     this.list = JSON.parse(localStorage.getItem('list')) || [];
-
     this.id = this.list.length;
   },
   methods: {
