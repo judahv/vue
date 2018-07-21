@@ -119,6 +119,7 @@ new Vue({
 // 配列の削除の仕方　spliceがうまく扱えなかっただけだった。
 // localStorage https://www.pazru.net/html5/WebStorage/030.html
 // lengthよりidが多かった場合やlengthのほうが小さくなってしまう場合がある。lengthより配列の最後のid++のほうが安全かも。
+// idもlocalStorageに入れれば前のやつみないですむ。一般的には追加のときのＩＤをどう持っているか聞きたい。
 
 /* TodoList
  * todoの新規追加（ポップアップ）
