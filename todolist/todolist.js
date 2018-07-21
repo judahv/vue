@@ -12,7 +12,7 @@ Vue.component('todo-entry',{
   '<form @submit.prevent="" class="entry">' +
   '<button type="button" @click="closeEntry" class="close">閉じる</button>' +
   '<p v-if="isError" class="text-error">Todoを入力してください。</p>' +
-  '<input type="text" placeholder="todo入力" v-model="text" :class="{ error : isError }"><br>'+
+  '<input type="text" placeholder="todo入力" v-model="text" :class="{ error : isError }"><br>' +
   '<button type="submit" @click="enterButton" class="add">追加</button>' +
   '</form></div>',
   props: ['show'],
@@ -35,13 +35,16 @@ Vue.component('todo-entry',{
     },
     closeEntry() {
       this.$emit('show');
-    },
+    }
   }
 })
 
 Vue.component('todo',{
 	template: '<ul class="list">' +
-	'<li v-for="item in items" :key="item.id">{{item.text}}<button type="button" @click="deleteButton(item.id)">削除</button></li>' +
+  '<li v-for="item in items" :key="item.id">'+
+  '<div class="list-text">{{item.text}}</div>'+
+  '<div class="list-delete"><button type="button" @click="deleteButton(item.id)">削除</button></div>'+
+  '</li>' +
   '</ul>',
   props: ['items'],
   methods: {

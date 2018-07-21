@@ -74,13 +74,16 @@ button {
     text-align: left;
 }
 
-.list {
-    
-}
 .list li {
+    display: flex;
     padding: 5px;
     border-bottom: 1px solid #eee;
 }
+.list .list-text {
+    flex-grow: 1;
+    line-height: 20px;
+}
 .list button {
     margin-left: 7px;
+    white-space: nowrap;
 }
