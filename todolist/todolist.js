@@ -82,7 +82,7 @@ new Vue({
     },
     deleteList(id) {
       this.list.some((v, i) => {
-        if (v.id == id) this.list.splice(i , 1);
+        if (v.id === id) this.list.splice(i , 1);
       });
       this.setList();
       this.setId();
