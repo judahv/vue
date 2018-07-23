@@ -13,7 +13,7 @@ Vue.component('todo-entry',{
   '<form @submit.prevent="" class="entry">' +
   '<button type="button" @click="closeEntry" class="close">閉じる</button>' +
   '<p v-if="isError" class="text-error">Todoを入力してください。</p>' +
-  '<textarea type="text" placeholder="todo入力" v-model="text" :class="{ error : isError }"></textarea><br>' +
+  '<textarea type="text" placeholder="例：部屋の掃除をする" v-model="text" :class="{ error : isError }"></textarea><br>' +
   '<button type="submit" @click="enterButton" class="add">追加</button>' +
   '</form></div>',
   props: ['show'],
@@ -69,26 +69,23 @@ new Vue({
   mounted() {
     // localSotrage全データ削除用
     // localStorage.clear('list');
+    // localStorage.clear('id');
     this.list = JSON.parse(localStorage.getItem('list')) || [];
-    if(this.list.length === 0) {
-      this.id = this.list.length + 1;
-    } else {
-      let lastList = this.list.length;
-      lastList--;
-      this.id = this.list[lastList].id + 1;
-    }
+    this.id = JSON.parse(localStorage.getItem('id')) || 0;
   },
   methods: {
     addList(text) {
       this.list.push({ id:this.id, text: text });
       this.id++;
       this.setList();
+      this.setId();
     },
     deleteList(id) {
       this.list.some((v, i) => {
         if (v.id == id) this.list.splice(i , 1);
       });
       this.setList();
+      this.setId();
     },
     showEntry() {
       if(this.show) {
@@ -99,6 +96,9 @@ new Vue({
     },
     setList() {
       localStorage.setItem('list', JSON.stringify(this.list));
+    },
+    setId() {
+      localStorage.setItem('id', JSON.stringify(this.id));
     }
   }
 })
@@ -120,6 +120,7 @@ new Vue({
 // localStorage https://www.pazru.net/html5/WebStorage/030.html
 // lengthよりidが多かった場合やlengthのほうが小さくなってしまう場合がある。lengthより配列の最後のid++のほうが安全かも。
 // idもlocalStorageに入れれば前のやつみないですむ。一般的には追加のときのＩＤをどう持っているか聞きたい。
+// →保存に利用するidもlocalStorageに入れて、一元管理するように修正。
 
 /* TodoList
  * todoの新規追加（ポップアップ）
