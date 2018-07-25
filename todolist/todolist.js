@@ -63,7 +63,7 @@ new Vue({
   el: '#app',
   data: {
     list: [],
-    id: Number,
+    id: 0,
     show: false,
   },
   mounted() {
@@ -98,6 +98,11 @@ new Vue({
     }
   }
 })
+
+/*
+ * showEntry()のthis.show = !this.show;をisShowに変えたいが、dataにあるshowの3か所を変えただけだとエラーがでてしまうので、後回し。
+ */
+
 
 /*
  * 【疑問】:class="{is-error:isError}" とクラス名を「is-error」にしたいが、ならない。「error」ならＯＫみたい
