@@ -88,11 +88,7 @@ new Vue({
       this.setId();
     },
     showEntry() {
-      if(this.show) {
-        this.show = false;
-      } else {
-        this.show = true;
-      }
+      this.show = !this.show;
     },
     setList() {
       localStorage.setItem('list', JSON.stringify(this.list));
