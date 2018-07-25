@@ -77,25 +77,21 @@ new Vue({
     addList(text) {
       this.list.push({ id:this.id, text: text });
       this.id++;
-      this.setList();
-      this.setId();
+      this.setStorage();
     },
     deleteList(id) {
       this.list.some((v, i) => {
         if (v.id === id) this.list.splice(i , 1);
       });
-      this.setList();
-      this.setId();
+      this.setStorage();
     },
     showEntry() {
       this.show = !this.show;
     },
-    setList() {
+    setStorage() {
       localStorage.setItem('list', JSON.stringify(this.list));
-    },
-    setId() {
       localStorage.setItem('id', JSON.stringify(this.id));
-    }
+    },
   }
 })
 
