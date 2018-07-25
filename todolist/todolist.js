@@ -27,7 +27,6 @@ Vue.component('todo-entry',{
     enterButton(e) {
       if (this.text === '') {
         this.isError = true;
-        e.preventDefault();
       } else {
         this.$emit('add', this.text);
         this.resetEntry();
