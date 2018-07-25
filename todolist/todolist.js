@@ -27,10 +27,10 @@ Vue.component('todo-entry',{
     enterButton(e) {
       if (this.text === '') {
         this.isError = true;
-      } else {
-        this.$emit('add', this.text);
-        this.resetEntry();
+        return;
       }
+      this.$emit('add', this.text);
+      this.resetEntry();
     },
     closeEntry() {
       this.resetEntry();
