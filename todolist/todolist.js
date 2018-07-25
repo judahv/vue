@@ -16,7 +16,12 @@ Vue.component('todo-entry',{
   '<textarea type="text" placeholder="例：部屋の掃除をする" v-model="text" :class="{ error : isError }"></textarea><br>' +
   '<button type="submit" @click="enterButton" class="add">追加</button>' +
   '</form></div>',
-  props: ['show'],
+  props: {
+    show: {
+      type: boolean,
+      default: false,
+    },
+  },
   data() {
     return {
       text: '',
