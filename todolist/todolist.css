@@ -62,7 +62,7 @@ textarea {
     margin-bottom: 10px;
     padding: 10px;
 }
-.entry textarea.error {
+.entry textarea.is-error {
     border: 3px solid #f00;
 }
 .entry .close {

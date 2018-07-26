@@ -13,7 +13,7 @@ Vue.component('todo-entry',{
   '<form @submit.prevent="" class="entry">' +
   '<button type="button" @click="closeEntry" class="close">閉じる</button>' +
   '<p v-if="isError" class="text-error">Todoを入力してください。</p>' +
-  '<textarea type="text" placeholder="例：部屋の掃除をする" v-model="text" :class="{ `is-error` : isError }"></textarea><br>' +
+  '<textarea type="text" placeholder="例：部屋の掃除をする" v-model="text" :class="{ \'is-error\' : isError }"></textarea><br>' +
   '<button type="submit" @click="enterButton" class="add">追加</button>' +
   '</form></div>',
   props: {
