@@ -8,7 +8,7 @@ Vue.component('button-entry',{
 })
 
 Vue.component('todo-entry',{
-  template: '<div class="todo-entry" v-if="show">' +
+  template: '<div class="todo-entry" v-if="isShow">' +
   '<div class="bg-entry" @click="closeEntry"></div>' +
   '<form @submit.prevent="" class="entry">' +
   '<button type="button" @click="closeEntry" class="close">閉じる</button>' +
@@ -17,7 +17,7 @@ Vue.component('todo-entry',{
   '<button type="submit" @click="enterButton" class="add">追加</button>' +
   '</form></div>',
   props: {
-    show: {
+    isShow: {
       type: Boolean,
       default: false,
     },
@@ -75,7 +75,7 @@ new Vue({
   data: {
     list: [],
     id: 0,
-    show: false,
+    isShow: false,
   },
   mounted() {
     // localSotrage全データ削除用
@@ -97,7 +97,7 @@ new Vue({
       this.setStorage();
     },
     showEntry() {
-      this.show = !this.show;
+      this.isShow = !this.isShow;
     },
     setStorage() {
       localStorage.setItem('list', JSON.stringify(this.list));
