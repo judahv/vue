@@ -13,12 +13,12 @@ Vue.component('todo-entry',{
   '<form @submit.prevent="" class="entry">' +
   '<button type="button" @click="closeEntry" class="close">閉じる</button>' +
   '<p v-if="isError" class="text-error">Todoを入力してください。</p>' +
-  '<textarea type="text" placeholder="例：部屋の掃除をする" v-model="text" :class="{ error : isError }"></textarea><br>' +
+  '<textarea type="text" placeholder="例：部屋の掃除をする" v-model="text" :class="{ `is-error` : isError }"></textarea><br>' +
   '<button type="submit" @click="enterButton" class="add">追加</button>' +
   '</form></div>',
   props: {
     show: {
-      type: boolean,
+      type: Boolean,
       default: false,
     },
   },
@@ -55,7 +55,14 @@ Vue.component('todo',{
   '<div class="list-delete"><button type="button" @click="deleteButton(item.id)">削除</button></div>'+
   '</li>' +
   '</ul>',
-  props: ['items'],
+  props: {
+    items: {
+      type: Array,
+      default: {
+        text: 'todoはいります'
+      }
+    }
+  },
   methods: {
     deleteButton(id) {
       this.$emit('delete', id);
