@@ -20,6 +20,7 @@ Vue.component('todo-entry',{
     isShow: {
       type: Boolean,
       default: false,
+      required: true,
     },
   },
   data() {
@@ -58,9 +59,8 @@ Vue.component('todo',{
   props: {
     items: {
       type: Array,
-      default: {
-        text: 'todoはいります'
-      }
+      default: [],// 配列の中身　id:id番号 text:todo
+      required: true,
     }
   },
   methods: {
