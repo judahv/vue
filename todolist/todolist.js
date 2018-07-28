@@ -59,7 +59,7 @@ Vue.component('todo',{
   props: {
     items: {
       type: Array,
-      default: [],// 配列の中身　id:id番号 text:todo
+      default: [],// 配列の中身　id:Number（id番号） text:String（todo中身）
       required: true,
     }
   },
