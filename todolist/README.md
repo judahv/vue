@@ -4,6 +4,10 @@
 
 Vueの勉強のためにtodolistを実装しました。
 
+## 動作確認URL
+
+https://codepen.io/judahv/pen/RBjaOr
+
 ## 利用技術
 
 `<script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>` を読み込みVue.jsの純粋な記述方法です。
